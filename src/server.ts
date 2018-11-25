@@ -1,9 +1,11 @@
 import 'reflect-metadata';
-import {createConnection, getManager} from "typeorm";
+import {createConnection, getManager, useContainer} from "typeorm";
 import {resolvers, typeDefs} from "./modules";
+import {Container} from "typedi";
 
 const {ApolloServer, gql} = require('apollo-server');
 
+useContainer(Container);
 
 const bootstrap = async () => {
     try {
