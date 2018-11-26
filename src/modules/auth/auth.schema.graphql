@@ -1,5 +1,6 @@
 type Response {
     ok: Boolean!
+    token:String
     error: String
 
 }
@@ -14,4 +15,9 @@ type Mutation {
         password: String!
         name: String!
     ): Response!
+    login(
+        email:String!
+        password:String!
+    ):Response!
+
 }

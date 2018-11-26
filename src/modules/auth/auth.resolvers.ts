@@ -13,10 +13,30 @@ const resolver: ResolverMap = {
 
             try {
                 const authService = Container.get(AuthService)
-                authService.signUp(email, password, name)
+                const token = authService.signUp(email, password, name)
 
                 return {
-                    ok: true
+                    ok: true,
+                    token
+                }
+            } catch (err) {
+                return {
+                    ok: false,
+                    error: 'Error' + err
+                }
+            }
+        },
+        login: async (_, args, context) => {
+            const {email, password} = args
+
+
+            try {
+                const authService = Container.get(AuthService)
+                const token = authService.login(email, password)
+
+                return {
+                    ok: true,
+                    token
                 }
             } catch (err) {
                 return {

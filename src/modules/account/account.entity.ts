@@ -1,6 +1,6 @@
 import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
 import {Photo} from "../photo";
-import {IsEmail} from "class-validator";
+import {IsEmail, IsNotEmpty} from "class-validator";
 
 @Entity()
 export default class Account extends BaseEntity {
@@ -12,6 +12,7 @@ export default class Account extends BaseEntity {
     email: string
 
     @Column()
+    @IsNotEmpty()
     name: string
 
     /**

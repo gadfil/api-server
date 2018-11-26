@@ -1,6 +1,7 @@
 import {BaseEntity, BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
 import * as bcrypt from 'bcrypt'
 import {Account} from "../account";
+import {IsEmail, IsNotEmpty} from "class-validator";
 
 
 @Entity()
@@ -10,9 +11,11 @@ export default class User extends BaseEntity{
     id: number
 
     @Column()
+    @IsEmail()
     email: string
 
     @Column()
+    @IsNotEmpty()
     password: string
 
     @Column()
@@ -31,7 +34,5 @@ export default class User extends BaseEntity{
         this.salt = salt
     }
 
-    checkPassword(rawPassword: string): Promise<boolean> {
-        return bcrypt.compare(rawPassword, this.password)
-    }
+
 }
