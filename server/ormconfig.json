@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "oleggamega",
   "password": "",
-  "database": "oleggamega",
+  "database": "dating_app",
   "synchronize": true,
   "logging": "all",
   "entities": [

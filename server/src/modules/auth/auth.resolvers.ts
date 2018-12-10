@@ -2,6 +2,7 @@ import {ResolverMap} from '../../util/resolverType'
 import {Container} from "typedi";
 import AuthService from './auth.service'
 
+
 const resolver: ResolverMap = {
     Query: {
         hello: () => "Hello world!"
@@ -10,9 +11,9 @@ const resolver: ResolverMap = {
         register: async (_, args, context) => {
             const {email, password, name} = args
 
+            const authService = Container.get(AuthService)
 
             try {
-                const authService = Container.get(AuthService)
                 const token = authService.signUp(email, password, name)
 
                 return {
@@ -29,9 +30,9 @@ const resolver: ResolverMap = {
         login: async (_, args, context) => {
             const {email, password} = args
 
-
             try {
                 const authService = Container.get(AuthService)
+
                 const token = authService.login(email, password)
 
                 return {

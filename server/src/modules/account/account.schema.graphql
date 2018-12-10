@@ -1,0 +1,35 @@
+type Account {
+    id:Int!
+    name:String!
+    email:String!
+    sex:Int
+    description:String
+}
+
+
+directive @isAuthenticated on QUERY | FIELD
+
+enum Role{
+    OWNER
+}
+
+directive @auth on QUERY | MUTATION | FIELD|FIELD_DEFINITION
+
+input AccountInput {
+    name:String
+    sex:Int
+    description:String
+}
+
+type Query {
+
+  account(id:Int!): Account!   @auth
+
+  accounts(count:Int = 10, offset:Int =0): [Account]!
+
+}
+
+type Mutation {
+     updateAccount(id:Int, input:AccountInput):Account! @auth
+
+}

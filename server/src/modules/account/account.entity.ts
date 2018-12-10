@@ -1,8 +1,9 @@
-import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm'
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique} from 'typeorm'
 import {Photo} from "../photo";
 import {IsEmail, IsNotEmpty} from "class-validator";
 
 @Entity()
+@Unique(["email"])
 export default class Account extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number

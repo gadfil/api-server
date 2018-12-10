@@ -1,10 +1,11 @@
-import {BaseEntity, BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm'
+import {BaseEntity, BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Unique} from 'typeorm'
 import * as bcrypt from 'bcrypt'
 import {Account} from "../account";
 import {IsEmail, IsNotEmpty} from "class-validator";
 
 
 @Entity()
+@Unique(["email"])
 export default class User extends BaseEntity{
 
     @PrimaryGeneratedColumn()
